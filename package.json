@@ -1,7 +1,7 @@
 {
   "name": "preserve",
-  "description": "Temporarily subsitute tokens in the given `string` with placeholders, then put them back after transforming the string.",
-  "version": "0.1.0",
+  "description": "Temporarily substitute tokens in the given `string` with placeholders, then put them back after transforming the string.",
+  "version": "0.1.1",
   "homepage": "https://github.com/jonschlinkert/preserve",
   "author": {
     "name": "Jon Schlinkert",

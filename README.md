@@ -1,6 +1,6 @@
 # preserve [![NPM version](https://badge.fury.io/js/preserve.svg)](http://badge.fury.io/js/preserve)
 
-> Temporarily subsitute tokens in the given `string` with placeholders, then put them back after transforming the string.
+> Temporarily substitute tokens in the given `string` with placeholders, then put them back after transforming the string.
 
 Useful for protecting tokens, like templates in HTML, from being mutated when the string is transformed in some way, like from a formatter/beautifier.
 
