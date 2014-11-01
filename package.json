@@ -1,0 +1,45 @@
+{
+  "name": "preserve",
+  "description": "Temporarily subsitute tokens in the given `string` with placeholders, then put them back after transforming the string.",
+  "version": "0.1.0",
+  "homepage": "https://github.com/jonschlinkert/preserve",
+  "author": {
+    "name": "Jon Schlinkert",
+    "url": "https://github.com/jonschlinkert"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/jonschlinkert/preserve.git"
+  },
+  "bugs": {
+    "url": "https://github.com/jonschlinkert/preserve/issues"
+  },
+  "licenses": [
+    {
+      "type": "MIT",
+      "url": "https://github.com/jonschlinkert/preserve/blob/master/LICENSE-MIT"
+    }
+  ],
+  "main": "index.js",
+  "engines": {
+    "node": ">=0.10.0"
+  },
+  "scripts": {
+    "test": "mocha -R spec"
+  },
+  "devDependencies": {
+    "js-beautify": "^1.5.4",
+    "mocha": "*",
+    "verb": ">= 0.2.6",
+    "verb-tag-jscomments": ">= 0.2.0"
+  },
+  "keywords": [
+    "docs",
+    "documentation",
+    "generate",
+    "generator",
+    "markdown",
+    "templates",
+    "verb"
+  ]
+}
