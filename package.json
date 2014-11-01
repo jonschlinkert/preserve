@@ -1,7 +1,7 @@
 {
   "name": "preserve",
   "description": "Temporarily substitute tokens in the given `string` with placeholders, then put them back after transforming the string.",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "homepage": "https://github.com/jonschlinkert/preserve",
   "author": {
     "name": "Jon Schlinkert",
@@ -30,22 +30,22 @@
   "devDependencies": {
     "js-beautify": "^1.5.4",
     "mocha": "*",
+    "should": "^4.1.0",
     "verb": "^0.2.6",
     "verb-tag-jscomments": "^0.2.0"
   },
   "keywords": [
-    "replace",
-    "placeholders",
+    "escape",
+    "format",
     "placeholder",
+    "placeholders",
+    "prettify",
+    "regex",
+    "replace",
+    "template",
+    "templates",
     "token",
     "tokens",
-    "regex",
-    "escape",
-    "template",
-    "format",
-    "prettify",
-    "markdown",
-    "templates",
     "verb"
   ]
 }

@@ -8,52 +8,12 @@
 'use strict';
 
 /**
- * Pass the `regex` pattern for the tokens you want to preserve
- * in `string`, Run `fn` on `string` then put the orginal tokens
- * back before returning the string.
+ * Create an instance of `Tokens` with a `regex` for the tokens you
+ * wish to preserve.
  *
  * ```js
- * var fn = require('js-beautify').html;
- * console.log(tokens(/<%=\s*[^>]+%>/g, '<div><%= name %></div>', fn);
- * ```
- * Results in something like:
- *
- * ```html
- * <div>
- *   <%= name %>
- * </div>
- * ```
- *
- * @param  {String} `re` Regex for matching tokens.
- * @param  {String} `str` String with tokens to preserve.
- * @param  {Function} `fn` The function to run on `string`.
- * @return {String}
- * @api public
- */
-
-function preserve(re, str, fn) {
-  var tokens = new Tokens(re);
-  str = tokens.before(str);
-  str = fn(str);
-  return tokens.after(str);
-}
-
-module.exports = preserve;
-
-/**
- * Expose `preserve.Tokens`
- */
-
-module.exports.Tokens = Tokens;
-
-/**
- * If you'd rather use the API directly, create an instance
- * of `Tokens`, passing the `regex` for the tokens you wish to
- * preserve to the constructor.
- *
- * ```js
- * var preserve = require('preserve');
- * var tokens = new preserve.Tokens(/<%=\s*[^>]+%>/g);
+ * var Tokens = require('preserve');
+ * var tokens = new Tokens(/<%=\s*[^>]+%>/g);
  * ```
  *
  * @param {RegExp} `re` Matching regex for the tokens you want to preserve.
@@ -121,3 +81,9 @@ Tokens.prototype.after = function(str) {
     return tokens.cache[id];
   });
 };
+
+/**
+ * Expose `preserve.Tokens`
+ */
+
+module.exports = Tokens;

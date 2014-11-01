@@ -7,12 +7,12 @@
 
 'use strict';
 
-var assert = require('assert');
 var should = require('should');
-var tokens = require('./');
+var Tokens = require('./');
+var tokens;
 
 var re = /<%=\s*[^>]+%>/g;
-var fn = function(str) {
+var pretty = function(str) {
   return require('js-beautify').html(str, {
     indent_char: ' ',
     indent_size: 2,
@@ -20,20 +20,24 @@ var fn = function(str) {
 };
 
 describe('preserve tokens', function () {
+  before(function () {
+    tokens = new Tokens(/<%=\s*[^>]+%>/g);
+  });
+
   it('should (e.g. shouldn\'t, but will) mangle tokens in the given string', function () {
-    var html = fn('<ul><li><%= name %></li></ul>');
+    var html = pretty('<ul><li><%= name %></li></ul>');
     html.should.equal('<ul>\n  <li>\n    <%=n ame %>\n  </li>\n</ul>');
   });
 
   it('should preserve tokens in the given string', function () {
-    var html = tokens(re, '<ul><li><%= name %></li></ul>', fn);
+    var html = tokens.after(pretty(tokens.before('<ul><li><%= name %></li></ul>')));
     html.should.equal('<ul>\n  <li><%= name %></li>\n</ul>');
   });
 });
 
 describe('API', function () {
   before(function () {
-    tokens = new tokens.Tokens(/<%=\s*[^>]+%>/g);
+    tokens = new Tokens(/<%=\s*[^>]+%>/g);
   });
   describe('.before()', function () {
     it('should replace matches with placeholder tokens:', function () {
@@ -48,4 +52,3 @@ describe('API', function () {
     });
   });
 });
-

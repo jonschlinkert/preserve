@@ -43,46 +43,19 @@ npm i preserve --save
 npm test
 ```
 
-## Usage
-
-```js
-var preserve = require('preserve');
-```
-
 ## API
-### [preserve](index.js#L34)
+### [Tokens](index.js#L23)
 
-Pass the `regex` pattern for the tokens you want to preserve in `string`, Run `fn` on `string` then put the orginal tokens back before returning the string.
-
-* `re` **{String}**: Regex for matching tokens.    
-* `str` **{String}**: String with tokens to preserve.    
-* `fn` **{Function}**: The function to run on `string`.    
-* `returns`: {String}  
-
-```js
-var fn = require('js-beautify').html;
-console.log(tokens(/<%=\s*[^>]+%>/g, '<div><%= name %></div>', fn);
-```
-Results in something like:
-
-```html
-<div>
-  <%= name %>
-</div>
-```
-
-### [Tokens](index.js#L63)
-
-If you'd rather use the API directly, create an instance of `Tokens`, passing the `regex` for the tokens you wish to preserve to the constructor.
+Create an instance of `Tokens` with a `regex` for the tokens you wish to preserve.
 
 * `re` **{RegExp}**: Matching regex for the tokens you want to preserve.    
 
 ```js
-var preserve = require('preserve');
-var tokens = new preserve.Tokens(/<%=\s*[^>]+%>/g);
+var Tokens = require('preserve');
+var tokens = new Tokens(/<%=\s*[^>]+%>/g);
 ```
 
-### [.before](index.js#L93)
+### [.before](index.js#L53)
 
 Replace tokens in `str` with a temporary, heuristic placeholder.
 
@@ -94,7 +67,7 @@ tokens.before('<div><%= name %></div>');
 //=> '<div>__ID1__</div>'
 ```
 
-### [.after](index.js#L117)
+### [.after](index.js#L77)
 
 Replace placeholders in `str` with original tokens.
 
