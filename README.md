@@ -28,7 +28,7 @@ Correct.
 </ul>
 ```
 
-For the record, this is just a random example, I've had very few issues with js-beautify in general. Poing being that with or without js-beautify, this kind of token mangling does happen sometimes when you use formatters, beautifiers or similar tools.
+For the record, this is just a random example, I've had very few issues with js-beautify in general. But with or without js-beautify, this kind of token mangling does happen sometimes when you use formatters, beautifiers or similar tools.
 
 ## Install
 #### Install with [npm](npmjs.org)
@@ -47,8 +47,6 @@ npm test
 
 ```js
 var preserve = require('preserve');
-
-console.log(preserve('abc'));
 ```
 
 ## API
