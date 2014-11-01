@@ -30,3 +30,22 @@ describe('preserve tokens', function () {
     html.should.equal('<ul>\n  <li><%= name %></li>\n</ul>');
   });
 });
+
+describe('API', function () {
+  before(function () {
+    tokens = new tokens.Tokens(/<%=\s*[^>]+%>/g);
+  });
+  describe('.before()', function () {
+    it('should replace matches with placeholder tokens:', function () {
+      tokens.before('<%= a %>\n<%= b %>\n<%= c %>').should.equal('__ID0__\n__ID1__\n__ID2__');
+    });
+  });
+
+  describe('.after()', function () {
+    it('should replace placeholder tokens with original values:', function () {
+      tokens.before('<%= a %>\n<%= b %>\n<%= c %>').should.equal('__ID0__\n__ID1__\n__ID2__');
+      tokens.after('__ID0__\n__ID1__\n__ID2__').should.equal('<%= a %>\n<%= b %>\n<%= c %>');
+    });
+  });
+});
+

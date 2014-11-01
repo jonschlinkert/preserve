@@ -94,7 +94,7 @@ tokens.before('<div><%= name %></div>');
 //=> '<div>__ID1__</div>'
 ```
 
-### [.after](index.js#L114)
+### [.after](index.js#L117)
 
 Replace placeholders in `str` with original tokens.
 

@@ -92,9 +92,12 @@ Tokens.prototype.makeId = function(num) {
 
 Tokens.prototype.before = function(str) {
   var tokens = this;
-  return str.replace(this.re, function (match, i) {
-    tokens.cache[i] = match;
-    return tokens.makeId(i);
+  var i = 0;
+
+  return str.replace(this.re, function (match) {
+    var id = i++;
+    tokens.cache[id] = match;
+    return tokens.makeId(id);
   });
 };
 
