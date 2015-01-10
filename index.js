@@ -1,48 +1,18 @@
 /*!
  * preserve <https://github.com/jonschlinkert/preserve>
  *
- * Copyright (c) 2014 Jon Schlinkert, contributors.
+ * Copyright (c) 2014-2015, Jon Schlinkert.
  * Licensed under the MIT license.
  */
 
 'use strict';
 
 /**
- * Create an instance of `Tokens` with a `regex` for the tokens you
- * wish to preserve.
- *
- * ```js
- * var Tokens = require('preserve');
- * var tokens = new Tokens(/<%=\s*[^>]+%>/g);
- * ```
- *
- * @param {RegExp} `re` Matching regex for the tokens you want to preserve.
- * @api public
- */
-
-function Tokens(re) {
-  this.cache = {};
-  this.re = re;
-}
-
-/**
- * Generate a temporary ID as a heuristic for tokens.
- *
- * @param  {Number} `num`
- * @return {String}
- * @api private
- */
-
-Tokens.prototype.makeId = function(num) {
-  return '__ID' + num + '__';
-};
-
-/**
  * Replace tokens in `str` with a temporary, heuristic placeholder.
  *
  * ```js
- * tokens.before('<div><%= name %></div>');
- * //=> '<div>__ID1__</div>'
+ * tokens.before('{a\\,b}');
+ * //=> '{__ID1__}'
  * ```
  *
  * @param  {String} `str`
@@ -50,14 +20,11 @@ Tokens.prototype.makeId = function(num) {
  * @api public
  */
 
-Tokens.prototype.before = function(str) {
-  var tokens = this;
-  var i = 0;
-
-  return str.replace(this.re, function (match) {
-    var id = i++;
-    tokens.cache[id] = match;
-    return tokens.makeId(id);
+exports.before = function before(str, re) {
+  return str.replace(re, function (match) {
+    var id = randomize();
+    cache[id] = match;
+    return '__ID' + id + '__';
   });
 };
 
@@ -65,8 +32,8 @@ Tokens.prototype.before = function(str) {
  * Replace placeholders in `str` with original tokens.
  *
  * ```js
- * tokens.after('<div>__ID1__</div>');
- * //=> '<div><%= name %></div>'
+ * tokens.after('{__ID1__}');
+ * //=> '{a\\,b}'
  * ```
  *
  * @param  {String} `str` String with placeholders
@@ -74,16 +41,14 @@ Tokens.prototype.before = function(str) {
  * @api public
  */
 
-Tokens.prototype.after = function(str) {
-  var re = /__ID(\d+)__/g;
-  var tokens = this;
-  return str.replace(re, function (_, id) {
-    return tokens.cache[id];
+exports.after = function after(str) {
+  return str.replace(/__ID(.{5})__/g, function (_, id) {
+    return cache[id];
   });
 };
 
-/**
- * Expose `preserve.Tokens`
- */
+function randomize() {
+  return Math.random().toString().slice(2, 7);
+}
 
-module.exports = Tokens;
+var cache = {};
