@@ -19,6 +19,9 @@
     "url": "https://github.com/jonschlinkert/preserve/blob/master/LICENSE-MIT"
   },
   "main": "index.js",
+  "files": [
+    "index.js"
+  ],
   "engines": {
     "node": ">=0.10.0"
   },
